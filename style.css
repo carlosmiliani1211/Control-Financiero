@@ -917,6 +917,8 @@ select:focus {
 
         border-radius: 26px;
     }
+}
+
 /* =========================================
    COMPROMISOS DEL MES
 ========================================= */
@@ -1320,7 +1322,6 @@ select:focus {
 
     margin-bottom: 18px;
 }
-}
 
 /* =========================================
    TARJETA DE CRÉDITO
@@ -1613,3 +1614,45 @@ html{background:#f4f6f8}
 body{padding-top:env(safe-area-inset-top)}
 .navegacion-inferior{padding-bottom:max(8px,env(safe-area-inset-bottom))}
 .backup-estado{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:11px 12px;margin:10px 0 12px;font-size:11px;color:var(--secundario);line-height:1.45}
+
+/* =========================================
+   V9.4 - CORRECCIÓN RESPONSIVE IPHONE
+========================================= */
+@media (max-width: 699px) {
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: calc(112px + env(safe-area-inset-bottom));
+    }
+
+    .navegacion-inferior {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 6px;
+        padding-right: 76px;
+    }
+
+    .boton-flotante {
+        right: 16px;
+    }
+
+    .resumen-grid,
+    .analisis-grid,
+    .tarjeta-grid {
+        min-width: 0;
+    }
+
+    .modal {
+        width: 100%;
+        max-width: 100%;
+    }
+}
