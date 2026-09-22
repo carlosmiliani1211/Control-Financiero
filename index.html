@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#f3f4f6">
+
+    <title>Control Financiero</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div>
+            <p class="subtitulo">Mi dinero</p>
+            <h1>Control Financiero</h1>
+        </div>
+
+        <button
+            class="boton-config"
+            id="btnConfiguracion"
+        >
+            ⚙️
+        </button>
+
+    </header>
+
+
+    <!-- NAVEGACIÓN MES -->
+
+    <section class="navegacion-mes">
+
+        <button id="mesAnterior">‹</button>
+
+        <div>
+            <span>Período</span>
+            <strong id="mesActual"></strong>
+        </div>
+
+        <button id="mesSiguiente">›</button>
+
+    </section>
+
+
+
+    <main class="contenido-vistas">
+
+        <section class="vista-app activa" id="vistaInicio" data-vista="inicio">
+    <!-- SALDO -->
+
+    <section class="saldo-card">
+
+        <p>Dinero disponible</p>
+
+        <h2 id="saldoDisponible">$0</h2>
+
+        <div class="barra">
+            <div
+                class="barra-progreso"
+                id="barraProgreso"
+            ></div>
+        </div>
+
+        <span id="porcentajeGastado">
+            0% del ingreso utilizado
+        </span>
+
+    </section>
+
+
+    <!-- RESUMEN PRINCIPAL -->
+
+    <section class="resumen">
+
+        <div class="card">
+
+            <span>Ingresos</span>
+
+            <strong id="totalIngresos">
+                $0
+            </strong>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>Gastos</span>
+
+            <strong id="totalGastos">
+                $0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- COMPROMISOS -->
+
+    <section class="compromisos-card">
+
+        <div class="compromisos-header">
+
+            <div>
+                <span class="mini-titulo">
+                    COMPROMISOS
+                </span>
+
+                <h3>Gastos fijos del mes</h3>
+            </div>
+
+            <strong id="totalCompromisos">
+                $0
+            </strong>
+
+        </div>
+
+
+        <div class="compromisos-datos">
+
+            <div>
+                <span>Pagado</span>
+                <strong id="fijosPagados">$0</strong>
+            </div>
+
+            <div>
+                <span>Pendiente</span>
+                <strong id="fijosPendientes">$0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="inicio-estado">
+        <div>
+            <span class="mini-titulo">RESUMEN DEL MES</span>
+            <h3>Tu panorama financiero</h3>
+        </div>
+        <p id="resumenInicioTexto">Registra tus ingresos y gastos para ver tu estado mensual.</p>
+        <div class="inicio-atajos">
+            <button type="button" data-ir-vista="gastos">Ver gastos</button>
+            <button type="button" data-ir-vista="tarjetas">Ver tarjeta</button>
+            <button type="button" data-ir-vista="analisis">Ver análisis</button>
+        </div>
+    </section>
+
+        </section>
+
+        <section class="vista-app" id="vistaGastos" data-vista="gastos">
+            <div class="encabezado-vista">
+                <span class="mini-titulo">GASTOS</span>
+                <h2>Movimientos y categorías</h2>
+                <p>Revisa en qué estás gastando y detecta los gastos pequeños que se acumulan.</p>
+            </div>
+<section class="seccion">
+
+    <div class="titulo-seccion">
+
+        <span class="mini-titulo">
+            PAGOS DEL MES
+        </span>
+
+        <h3>Compromisos de este mes</h3>
+
+    </div>
+
+    <div id="listaCompromisos"></div>
+
+</section>
+
+            <section class="seccion">
+                <div class="titulo-seccion titulo-con-accion">
+                    <div>
+                        <span class="mini-titulo">PRESUPUESTOS</span>
+                        <h3>Presupuesto por categoría</h3>
+                    </div>
+                    <button class="btn-mini-accion" id="btnConfigurarPresupuestos">Configurar</button>
+                </div>
+                <div class="categorias-card" id="listaPresupuestos"></div>
+            </section>
+
+            <section class="seccion">
+                <div class="titulo-seccion">
+                    <span class="mini-titulo">ALERTAS</span>
+                    <h3>Atención este mes</h3>
+                </div>
+                <div id="listaAlertasInternas" class="lista-alertas-internas"></div>
+            </section>
+
+    <!-- DISTRIBUCIÓN -->
+
+    <section class="seccion">
+
+        <div class="titulo-seccion">
+
+            <span class="mini-titulo">
+                RESUMEN
+            </span>
+
+            <h3>¿Dónde se fue mi dinero?</h3>
+
+        </div>
+
+        <div
+            class="categorias-card"
+            id="resumenCategorias"
+        ></div>
+
+    </section>
+
+
+
+    <!-- GASTOS HORMIGA -->
+
+    <section class="hormiga-card">
+
+        <div class="hormiga-icono">
+            🐜
+        </div>
+
+        <div>
+
+            <span>Gastos hormiga</span>
+
+            <strong id="totalHormiga">
+                $0
+            </strong>
+
+            <p id="cantidadHormiga">
+                0 movimientos este mes
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- MOVIMIENTOS -->
+
+    <section class="seccion">
+
+        <div class="titulo-seccion">
+
+            <span class="mini-titulo">
+                ACTIVIDAD
+            </span>
+
+            <h3>Últimos movimientos</h3>
+
+        </div>
+
+        <div id="listaMovimientos"></div>
+
+    </section>
+
+
+        </section>
+
+        <section class="vista-app" id="vistaTarjetas" data-vista="tarjetas">
+            <div class="encabezado-vista">
+                <span class="mini-titulo">TARJETAS</span>
+                <h2>Control de crédito</h2>
+                <p>Consulta lo cargado a tu tarjeta, el cupo disponible y la composición de tus compras.</p>
+            </div>
+    <!-- TARJETA DE CRÉDITO -->
+    <section class="seccion">
+        <div class="titulo-seccion">
+            <span class="mini-titulo">TARJETA DE CRÉDITO</span>
+            <h3>💳 Control de tarjeta</h3>
+        </div>
+
+        <div class="tarjeta-credito-card">
+            <div class="tc-superior">
+                <div>
+                    <span>Acumulado en tarjeta este mes</span>
+                    <strong id="tcAcumulado">$0</strong>
+                </div>
+                <span class="tc-badge" id="tcCompras">0 compras</span>
+            </div>
+
+            <div class="tc-grid">
+                <div>
+                    <span>🐜 Hormiga con tarjeta</span>
+                    <strong id="tcHormiga">$0</strong>
+                </div>
+                <div>
+                    <span>🚗 Transporte</span>
+                    <strong id="tcTransporte">$0</strong>
+                </div>
+                <div>
+                    <span>Cupo disponible</span>
+                    <strong id="tcCupoDisponible">Sin configurar</strong>
+                </div>
+                <div>
+                    <span>Facturación</span>
+                    <strong id="tcFacturacion">Sin configurar</strong>
+                </div>
+            </div>
+
+            <div class="tc-barra">
+                <div class="tc-barra-progreso" id="tcBarraProgreso"></div>
+            </div>
+
+            <p class="tc-ayuda" id="tcResumen">
+                Configura tu tarjeta para controlar el cupo y las fechas.
+            </p>
+
+            <button class="boton-secundario" id="btnConfigurarTarjeta">
+                Configurar tarjeta
+            </button>
+        </div>
+    </section>
+
+
+            <section class="seccion tarjeta-detalle-extra">
+                <div class="titulo-seccion">
+                    <span class="mini-titulo">COMPOSICIÓN</span>
+                    <h3>Compras con crédito por categoría</h3>
+                </div>
+                <div class="categorias-card" id="resumenTarjetaCategorias"></div>
+            </section>
+        </section>
+
+        <section class="vista-app" id="vistaAnalisis" data-vista="analisis">
+            <div class="encabezado-vista">
+                <span class="mini-titulo">ANÁLISIS</span>
+                <h2>Plan financiero</h2>
+                <p>Compara tu ritmo de gasto con tu meta de ahorro y la proyección del mes.</p>
+            </div>
+
+            <section class="seccion">
+                <div class="titulo-seccion titulo-con-accion">
+                    <div>
+                        <span class="mini-titulo">AHORRO</span>
+                        <h3>Metas de ahorro</h3>
+                    </div>
+                    <button class="btn-mini-accion" id="btnNuevaMetaAhorroV9">+ Nueva</button>
+                </div>
+                <div id="resumenAhorroV9" class="resumen-ahorro-v9"></div>
+                <div id="listaMetasAhorroV9"></div>
+                <p class="texto-ayuda ahorro-ayuda-v9">
+                    Los porcentajes de ingresos extra se separan automáticamente al registrar delivery, horas extra, bonos, ventas u otros ingresos adicionales.
+                </p>
+            </section>
+
+<!-- PLAN FINANCIERO -->
+
+<section class="seccion">
+
+    <div class="titulo-seccion">
+
+        <span class="mini-titulo">
+            PLAN FINANCIERO
+        </span>
+
+        <h3>¿Cómo voy este mes?</h3>
+
+    </div>
+
+
+    <div class="panel-financiero">
+
+        <!-- AHORRO -->
+
+        <div class="meta-ahorro">
+
+            <div>
+
+                <span class="etiqueta-panel">
+                    Meta de ahorro
+                </span>
+
+                <strong id="metaAhorroTexto">
+                    $0
+                </strong>
+
+            </div>
+
+            <button
+                class="btn-meta"
+                id="btnConfigurarMeta"
+            >
+                Configurar
+            </button>
+
+        </div>
+
+
+        <!-- DISPONIBLE PARA GASTAR -->
+
+        <div class="analisis-principal">
+
+            <span>
+                Disponible después de ahorro
+            </span>
+
+            <strong id="disponibleDespuesAhorro">
+                $0
+            </strong>
+
+        </div>
+
+
+        <!-- INDICADORES -->
+
+        <div class="grid-analisis">
+
+            <div class="indicador-analisis">
+
+                <span>
+                    🐜 Gastos hormiga
+                </span>
+
+                <strong id="analisisHormiga">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="indicador-analisis">
+
+                <span>
+                    📅 Promedio diario
+                </span>
+
+                <strong id="promedioDiario">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="indicador-analisis">
+
+                <span>
+                    📈 Proyección del mes
+                </span>
+
+                <strong id="proyeccionMensual">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <div class="indicador-analisis">
+
+                <span>
+                    💰 Ahorro proyectado
+                </span>
+
+                <strong id="ahorroProyectado">
+                    $0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ALERTA -->
+
+        <div
+            class="alerta-financiera"
+            id="alertaFinanciera"
+        >
+        </div>
+
+    </div>
+
+</section>
+        </section>
+
+    </main>
+</div>
+
+
+
+<nav class="navegacion-inferior" aria-label="Navegación principal">
+    <button class="nav-item activo" type="button" data-vista-destino="inicio">
+        <span>⌂</span><small>Inicio</small>
+    </button>
+    <button class="nav-item" type="button" data-vista-destino="gastos">
+        <span>💸</span><small>Gastos</small>
+    </button>
+    <button class="nav-item" type="button" data-vista-destino="tarjetas">
+        <span>💳</span><small>Tarjeta</small>
+    </button>
+    <button class="nav-item" type="button" data-vista-destino="analisis">
+        <span>▥</span><small>Análisis</small>
+    </button>
+</nav>
+
+<!-- BOTÓN FLOTANTE -->
+
+<button
+    class="boton-flotante"
+    id="btnMovimiento"
+>
+    +
+</button>
+
+
+<!-- MENÚ NUEVO MOVIMIENTO -->
+
+<div
+    class="modal-fondo"
+    id="modalMovimiento"
+>
+
+    <div class="modal modal-pequeno">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    NUEVO
+                </span>
+
+                <h2>¿Qué quieres registrar?</h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarMovimiento"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <button
+            class="opcion-movimiento"
+            id="opcionGasto"
+        >
+
+            <span class="opcion-icono rojo">
+                ↓
+            </span>
+
+            <div>
+                <strong>Registrar gasto</strong>
+                <span>Compra o pago realizado</span>
+            </div>
+
+        </button>
+
+
+        <button
+            class="opcion-movimiento"
+            id="opcionIngreso"
+        >
+
+            <span class="opcion-icono verde">
+                ↑
+            </span>
+
+            <div>
+                <strong>Registrar ingreso</strong>
+                <span>Delivery, bono u otro ingreso</span>
+            </div>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL GASTO -->
+
+<div
+    class="modal-fondo"
+    id="modalGasto"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    NUEVO MOVIMIENTO
+                </span>
+
+                <h2>Agregar gasto</h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarGasto"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <label>Monto</label>
+
+        <div class="input-dinero">
+
+            <span>$</span>
+
+            <input
+                type="number"
+                id="inputGasto"
+                placeholder="0"
+                inputmode="numeric"
+            >
+
+        </div>
+
+
+        <label>Categoría</label>
+
+        <select id="categoriaGasto">
+
+            <option value="Alimentación">
+                🍔 Alimentación
+            </option>
+
+            <option value="Transporte">
+                🚗 Transporte
+            </option>
+
+            <option value="Delivery">
+                🛵 Delivery
+            </option>
+
+            <option value="Hogar">
+                🏠 Hogar
+            </option>
+
+            <option value="Ocio">
+                🎮 Ocio
+            </option>
+
+            <option value="Compras">
+                🛍️ Compras
+            </option>
+
+            <option value="Deudas">
+                💳 Deudas
+            </option>
+
+            <option value="Suscripciones">
+                📱 Suscripciones
+            </option>
+
+            <option value="Salud">
+                🏥 Salud
+            </option>
+
+            <option value="Otros">
+                📦 Otros
+            </option>
+
+        </select>
+
+
+        <label>Medio de pago</label>
+
+        <select id="medioPagoGasto">
+            <option value="Debito/Efectivo">💵 Débito / Efectivo</option>
+            <option value="Tarjeta de credito">💳 Tarjeta de crédito</option>
+        </select>
+
+        <label>Descripción</label>
+
+        <input
+            type="text"
+            id="descripcionGasto"
+            placeholder="Ej: Café antes del trabajo"
+        >
+
+
+        
+        <div class="regla-hormiga-info" id="reglaHormigaInfo">
+            🤖 Detección automática activa
+        </div>
+
+<div class="check-hormiga">
+
+            <input
+                type="checkbox"
+                id="esHormiga"
+            >
+
+            <label for="esHormiga">
+
+                <strong>
+                    🐜 Marcar como gasto hormiga
+                </strong>
+
+                <span>
+                    Compra pequeña o impulsiva
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <button
+            class="boton-principal"
+            id="btnGuardarGasto"
+        >
+            Guardar gasto
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL INGRESO EXTRA -->
+
+<div
+    class="modal-fondo"
+    id="modalIngreso"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    NUEVO INGRESO
+                </span>
+
+                <h2>Ingreso adicional</h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarIngreso"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <label>Monto</label>
+
+        <div class="input-dinero">
+
+            <span>$</span>
+
+            <input
+                type="number"
+                id="inputIngreso"
+                placeholder="0"
+                inputmode="numeric"
+            >
+
+        </div>
+
+
+        <label>Origen</label>
+
+        <select id="tipoIngreso">
+
+            <option value="Delivery">
+                🛵 Delivery
+            </option>
+
+            <option value="Horas extra">
+                ⏱️ Horas extra
+            </option>
+
+            <option value="Bono">
+                🎁 Bono
+            </option>
+
+            <option value="Venta">
+                💰 Venta
+            </option>
+
+            <option value="Otro ingreso">
+                💵 Otro ingreso
+            </option>
+
+        </select>
+
+
+        <label>Descripción</label>
+
+        <input
+            type="text"
+            id="descripcionIngreso"
+            placeholder="Ej: Delivery sábado"
+        >
+
+
+        <button
+            class="boton-principal"
+            id="btnGuardarIngreso"
+        >
+            Guardar ingreso
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CONFIGURACIÓN -->
+
+<div
+    class="modal-fondo"
+    id="modalConfiguracion"
+>
+
+    <div class="modal configuracion-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    CONFIGURACIÓN
+                </span>
+
+                <h2>Mi presupuesto</h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarConfiguracion"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- SUELDO -->
+
+        <div class="config-bloque">
+
+            <h3>💰 Sueldo mensual</h3>
+
+            <p>
+                Sueldo líquido recibido durante este período.
+            </p>
+
+
+            <div class="input-dinero">
+
+                <span>$</span>
+
+                <input
+                    type="number"
+                    id="inputSueldo"
+                    placeholder="0"
+                    inputmode="numeric"
+                >
+
+            </div>
+
+
+            <button
+                class="boton-secundario"
+                id="btnGuardarSueldo"
+            >
+                Guardar sueldo
+            </button>
+
+        </div>
+
+
+        <!-- GASTOS FIJOS -->
+
+        <div class="config-bloque">
+
+            <div class="config-titulo">
+
+                <div>
+                    <h3>🔒 Gastos fijos</h3>
+
+                    <p>
+                        Se repetirán automáticamente cada mes.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="listaGastosFijos"></div>
+
+
+            <button
+                class="boton-agregar-fijo"
+                id="btnNuevoFijo"
+            >
+                + Agregar gasto fijo
+            </button>
+
+        </div>
+
+        
+        <div class="config-bloque">
+            <h3>🤖 Detección de gasto hormiga</h3>
+            <p>Los gastos iguales o inferiores a este monto se marcarán automáticamente como hormiga. Puedes desmarcarlos antes de guardar.</p>
+            <label>Monto máximo automático</label>
+            <div class="input-dinero">
+                <span>$</span>
+                <input type="number" id="inputUmbralHormiga" placeholder="Ej: 10000" inputmode="numeric">
+            </div>
+            <button class="boton-secundario" id="btnGuardarUmbralHormiga">Guardar regla</button>
+        </div>
+
+<div class="config-bloque">
+            <h3>💳 Tarjeta de crédito</h3>
+            <p>Configura el cupo y las fechas de tu tarjeta principal.</p>
+
+            <label>Cupo total</label>
+            <div class="input-dinero">
+                <span>$</span>
+                <input type="number" id="inputCupoTarjeta" placeholder="Ej: 1000000" inputmode="numeric">
+            </div>
+
+            <label>Día de facturación</label>
+            <input type="number" id="inputDiaFacturacion" min="1" max="31" placeholder="Ej: 19" inputmode="numeric">
+
+            <label>Día de vencimiento</label>
+            <input type="number" id="inputDiaVencimientoTarjeta" min="1" max="31" placeholder="Ej: 5" inputmode="numeric">
+
+            <button class="boton-secundario" id="btnGuardarTarjeta">
+                Guardar tarjeta
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- NUEVO GASTO FIJO -->
+
+<div
+    class="modal-fondo"
+    id="modalFijo"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    COMPROMISO MENSUAL
+                </span>
+
+                <h2>Nuevo gasto fijo</h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarFijo"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <label>Nombre</label>
+
+        <input
+            type="text"
+            id="nombreFijo"
+            placeholder="Ej: Cuota auto"
+        >
+
+
+        <label>Monto mensual</label>
+
+        <div class="input-dinero">
+
+            <span>$</span>
+
+            <input
+                type="number"
+                id="montoFijo"
+                placeholder="0"
+                inputmode="numeric"
+            >
+
+        </div>
+
+
+        <label>Categoría</label>
+
+        <select id="categoriaFijo">
+
+            <option value="Hogar">
+                🏠 Hogar
+            </option>
+
+            <option value="Transporte">
+                🚗 Transporte
+            </option>
+
+            <option value="Deudas">
+                💳 Deudas
+            </option>
+
+            <option value="Suscripciones">
+                📱 Suscripciones
+            </option>
+
+            <option value="Salud">
+                🏥 Salud
+            </option>
+
+            <option value="Otros">
+                📦 Otros
+            </option>
+
+        </select>
+
+
+        <label>Día de vencimiento</label>
+
+        <input
+            type="number"
+            id="diaFijo"
+            min="1"
+            max="31"
+            placeholder="Ej: 5"
+            inputmode="numeric"
+        >
+
+
+        <button
+            class="boton-principal"
+            id="btnGuardarFijo"
+        >
+            Guardar gasto fijo
+        </button>
+
+    </div>
+
+</div>
+<!-- MODAL EDITAR MOVIMIENTO -->
+
+<div class="modal-fondo" id="modalEditar">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="mini-titulo">
+                    EDITAR
+                </span>
+
+                <h2 id="tituloEditar">
+                    Editar movimiento
+                </h2>
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarEditar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <label>Monto</label>
+
+        <div class="input-dinero">
+
+            <span>$</span>
+
+            <input
+                type="number"
+                id="editarMonto"
+                inputmode="numeric"
+            >
+
+        </div>
+
+        <label>Descripción</label>
+
+        <input
+            type="text"
+            id="editarDescripcion"
+        >
+
+        <div id="editarOpcionesGasto">
+
+            <label>Categoría</label>
+
+            <select id="editarCategoria">
+
+                <option value="Alimentación">🍔 Alimentación</option>
+                <option value="Transporte">🚗 Transporte</option>
+                <option value="Delivery">🛵 Delivery</option>
+                <option value="Hogar">🏠 Hogar</option>
+                <option value="Ocio">🎮 Ocio</option>
+                <option value="Compras">🛍️ Compras</option>
+                <option value="Deudas">💳 Deudas</option>
+                <option value="Suscripciones">📱 Suscripciones</option>
+                <option value="Salud">🏥 Salud</option>
+                <option value="Otros">📦 Otros</option>
+
+            </select>
+
+            <label>Medio de pago</label>
+
+            <select id="editarMedioPago">
+                <option value="Debito/Efectivo">💵 Débito / Efectivo</option>
+                <option value="Tarjeta de credito">💳 Tarjeta de crédito</option>
+            </select>
+
+            <div class="check-hormiga">
+
+                <input
+                    type="checkbox"
+                    id="editarHormiga"
+                >
+
+                <label for="editarHormiga">
+
+                    <strong>
+                        🐜 Gasto hormiga
+                    </strong>
+
+                    <span>
+                        Marcar este movimiento como gasto hormiga
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <button
+            class="boton-principal"
+            id="btnGuardarEdicion"
+        >
+            Guardar cambios
+        </button>
+
+        <button
+            class="boton-eliminar"
+            id="btnEliminarMovimiento"
+        >
+            Eliminar movimiento
+        </button>
+
+    </div>
+
+</div>
+<!-- MODAL META DE AHORRO -->
+
+<div
+    class="modal-fondo"
+    id="modalMetaAhorro"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="mini-titulo">
+                    PLANIFICACIÓN
+                </span>
+
+                <h2>
+                    Meta de ahorro
+                </h2>
+
+            </div>
+
+            <button
+                class="cerrar-modal"
+                id="cerrarMetaAhorro"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <p class="texto-ayuda">
+
+            Define cuánto dinero quieres
+            separar este mes antes de considerar
+            el resto como disponible.
+
+        </p>
+
+
+        <label>
+            Quiero ahorrar
+        </label>
+
+
+        <div class="input-dinero">
+
+            <span>$</span>
+
+            <input
+                type="number"
+                id="inputMetaAhorro"
+                placeholder="Ej: 200000"
+                inputmode="numeric"
+            >
+
+        </div>
+
+
+        <button
+            class="boton-principal"
+            id="guardarMetaAhorro"
+        >
+            Guardar meta
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MODAL PRESUPUESTOS -->
+<div class="modal-fondo" id="modalPresupuestos">
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <span class="mini-titulo">PLANIFICACIÓN</span>
+                <h2>Presupuestos por categoría</h2>
+            </div>
+            <button class="cerrar-modal" id="cerrarPresupuestos">×</button>
+        </div>
+        <p class="texto-ayuda">Define el máximo mensual que quieres gastar en cada categoría. Deja $0 para no usar presupuesto.</p>
+        <div id="camposPresupuestos"></div>
+        <button class="boton-principal" id="btnGuardarPresupuestos">Guardar presupuestos</button>
+    
+        <div class="config-bloque">
+            <h3>🛡️ Respaldo de información</h3>
+            <p>Tus datos permanecen en este dispositivo. Exporta un respaldo para guardarlo en iCloud Drive, Archivos, Google Drive u otra ubicación.</p>
+            <div class="backup-estado" id="estadoBackup">Aún no se ha creado un respaldo desde esta versión.</div>
+            <button class="boton-principal" id="btnExportarBackup">Exportar respaldo</button>
+            <button class="boton-secundario" id="btnImportarBackup">Restaurar respaldo</button>
+            <input type="file" id="inputImportarBackup" accept=".json,application/json" style="display:none">
+            <p class="texto-ayuda">Recomendación: guarda el archivo en iCloud Drive. Incluye movimientos, compromisos, presupuestos, tarjeta y metas de ahorro.</p>
+        </div>
+
+</div>
+</div>
+
+<!-- MODAL META DE AHORRO V9 -->
+<div class="modal-fondo" id="modalMetaAhorroV9">
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <span class="mini-titulo">OBJETIVO</span>
+                <h2 id="tituloMetaAhorroV9">Nueva meta de ahorro</h2>
+            </div>
+            <button class="cerrar-modal" id="cerrarMetaAhorroV9">×</button>
+        </div>
+
+        <label>Nombre de la meta</label>
+        <input type="text" id="nombreMetaAhorroV9" placeholder="Ej: Pie vivienda">
+
+        <label>Objetivo total</label>
+        <div class="input-dinero">
+            <span>$</span>
+            <input type="number" id="objetivoMetaAhorroV9" placeholder="0" inputmode="numeric">
+        </div>
+
+        <label>Ya tengo ahorrado</label>
+        <div class="input-dinero">
+            <span>$</span>
+            <input type="number" id="inicialMetaAhorroV9" placeholder="0" inputmode="numeric">
+        </div>
+
+        <label>% de cada ingreso extra para esta meta</label>
+        <input type="number" id="porcentajeMetaAhorroV9" min="0" max="100" placeholder="Ej: 30" inputmode="decimal">
+
+        <p class="texto-ayuda" id="ayudaPorcentajeMetas">
+            La suma de porcentajes entre todas las metas no puede superar 100%.
+        </p>
+
+        <button class="boton-principal" id="btnGuardarMetaAhorroV9">Guardar meta</button>
+        <button class="boton-eliminar" id="btnEliminarMetaAhorroV9" style="display:none">Eliminar meta</button>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+</script>
+
+</body>
+
+</html>

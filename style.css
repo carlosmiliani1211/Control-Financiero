@@ -1,0 +1,1613 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --fondo: #f3f4f6;
+    --tarjeta: #ffffff;
+    --oscuro: #111827;
+    --texto: #1f2937;
+    --secundario: #6b7280;
+    --borde: #e5e7eb;
+    --azul: #2563eb;
+    --verde: #16a34a;
+    --rojo: #dc2626;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    max-width: 500px;
+    margin: auto;
+
+    padding:
+        max(25px, env(safe-area-inset-top))
+        18px
+        115px;
+}
+
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.subtitulo {
+    color: var(--secundario);
+    font-size: 14px;
+}
+
+header h1 {
+    font-size: 27px;
+    margin-top: 3px;
+}
+
+.boton-config {
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: white;
+
+    font-size: 20px;
+}
+
+
+/* MES */
+
+.navegacion-mes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: white;
+
+    border-radius: 17px;
+
+    padding: 8px 10px;
+
+    margin-bottom: 14px;
+}
+
+.navegacion-mes div {
+    text-align: center;
+}
+
+.navegacion-mes span {
+    display: block;
+
+    color: var(--secundario);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.navegacion-mes strong {
+    display: block;
+    margin-top: 2px;
+}
+
+.navegacion-mes button {
+    border: none;
+    background: transparent;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 30px;
+}
+
+
+/* SALDO */
+
+.saldo-card {
+    background: var(--oscuro);
+    color: white;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    margin-bottom: 13px;
+}
+
+.saldo-card p {
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+.saldo-card h2 {
+    font-size: 37px;
+
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+.saldo-card > span {
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.barra {
+    height: 7px;
+
+    background: #374151;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 9px;
+}
+
+.barra-progreso {
+    height: 100%;
+    width: 0;
+
+    background: #60a5fa;
+
+    border-radius: 20px;
+
+    transition: width .3s ease;
+}
+
+
+/* RESUMEN */
+
+.resumen {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 11px;
+
+    margin-bottom: 15px;
+}
+
+.card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 17px;
+}
+
+.card span {
+    color: var(--secundario);
+    font-size: 12px;
+}
+
+.card strong {
+    display: block;
+
+    font-size: 19px;
+
+    margin-top: 6px;
+}
+
+
+/* COMPROMISOS */
+
+.compromisos-card {
+    background: white;
+
+    border-radius: 19px;
+
+    padding: 17px;
+
+    margin-bottom: 28px;
+}
+
+.compromisos-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.compromisos-header h3 {
+    font-size: 16px;
+
+    margin-top: 3px;
+}
+
+.compromisos-header > strong {
+    font-size: 17px;
+}
+
+.compromisos-datos {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.compromisos-datos div {
+    background: #f9fafb;
+
+    padding: 11px;
+
+    border-radius: 12px;
+}
+
+.compromisos-datos span {
+    display: block;
+
+    color: var(--secundario);
+
+    font-size: 10px;
+}
+
+.compromisos-datos strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 14px;
+}
+
+
+/* SECCIONES */
+
+.seccion {
+    margin-top: 25px;
+}
+
+.titulo-seccion {
+    margin-bottom: 11px;
+}
+
+.titulo-seccion h3 {
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+.mini-titulo {
+    color: var(--secundario);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* CATEGORÍAS */
+
+.categorias-card {
+    background: white;
+
+    border-radius: 19px;
+
+    padding: 16px;
+}
+
+.categoria-item {
+    margin-bottom: 17px;
+}
+
+.categoria-item:last-child {
+    margin-bottom: 0;
+}
+
+.categoria-superior {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+}
+
+.categoria-barra {
+    height: 6px;
+
+    background: #f3f4f6;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.categoria-progreso {
+    height: 100%;
+
+    background: var(--azul);
+
+    border-radius: 20px;
+}
+
+
+/* HORMIGA */
+
+.hormiga-card {
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+
+    border-radius: 19px;
+
+    padding: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+.hormiga-icono {
+    width: 47px;
+    height: 47px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 23px;
+}
+
+.hormiga-card span {
+    color: #9a3412;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.hormiga-card strong {
+    display: block;
+
+    font-size: 20px;
+
+    margin: 2px 0;
+}
+
+.hormiga-card p {
+    color: var(--secundario);
+
+    font-size: 11px;
+}
+
+
+/* MOVIMIENTOS */
+
+.movimiento {
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 14px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.movimiento-izquierda {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.movimiento-icono {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: #f3f4f6;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 19px;
+}
+
+.movimiento-info strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+.movimiento-info span {
+    color: var(--secundario);
+
+    font-size: 11px;
+}
+
+.movimiento-monto {
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.movimiento-monto.ingreso {
+    color: var(--verde);
+}
+
+
+/* BOTÓN FLOTANTE */
+
+.boton-flotante {
+    position: fixed;
+
+    right: 22px;
+
+    bottom:
+        max(24px, env(safe-area-inset-bottom));
+
+    width: 62px;
+    height: 62px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--azul);
+
+    color: white;
+
+    font-size: 35px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, .35);
+
+    z-index: 50;
+}
+
+.boton-flotante:active {
+    transform: scale(.94);
+}
+
+
+/* MODALES */
+
+.modal-fondo {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        rgba(17, 24, 39, .48);
+
+    align-items: flex-end;
+
+    justify-content: center;
+}
+
+.modal-fondo.activo {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 500px;
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 26px 26px 0 0;
+
+    padding:
+        24px
+        20px
+        max(28px, env(safe-area-inset-bottom));
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 22px;
+}
+
+.modal-header h2 {
+    margin-top: 3px;
+}
+
+.cerrar-modal {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    font-size: 24px;
+}
+
+.modal > label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+
+/* INPUTS */
+
+input,
+select {
+    width: 100%;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 13px;
+
+    padding: 14px;
+
+    margin-bottom: 17px;
+
+    font-size: 16px;
+
+    background: white;
+
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--azul);
+}
+
+.input-dinero {
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid var(--borde);
+
+    border-radius: 14px;
+
+    padding-left: 15px;
+
+    margin-bottom: 17px;
+}
+
+.input-dinero:focus-within {
+    border-color: var(--azul);
+}
+
+.input-dinero span {
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+.input-dinero input {
+    border: none;
+
+    margin: 0;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+/* HORMIGA CHECK */
+
+.check-hormiga {
+    display: flex;
+
+    gap: 11px;
+
+    align-items: center;
+
+    background: #fff7ed;
+
+    border-radius: 14px;
+
+    padding: 13px;
+
+    margin-bottom: 18px;
+}
+
+.check-hormiga input {
+    width: 20px;
+    height: 20px;
+
+    margin: 0;
+}
+
+.check-hormiga label {
+    flex: 1;
+}
+
+.check-hormiga strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+.check-hormiga span {
+    display: block;
+
+    color: var(--secundario);
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+/* BOTONES */
+
+.boton-principal,
+.boton-secundario,
+.boton-agregar-fijo {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 14px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.boton-principal {
+    background: var(--azul);
+
+    color: white;
+}
+
+.boton-secundario {
+    background: #eff6ff;
+
+    color: var(--azul);
+}
+
+.boton-agregar-fijo {
+    margin-top: 10px;
+
+    background: #f3f4f6;
+
+    color: var(--texto);
+}
+
+
+/* MENÚ MOVIMIENTO */
+
+.opcion-movimiento {
+    width: 100%;
+
+    border: none;
+
+    background: #f9fafb;
+
+    border-radius: 16px;
+
+    padding: 14px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-align: left;
+}
+
+.opcion-icono {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+.opcion-icono.rojo {
+    background: #fee2e2;
+
+    color: var(--rojo);
+}
+
+.opcion-icono.verde {
+    background: #dcfce7;
+
+    color: var(--verde);
+}
+
+.opcion-movimiento strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+.opcion-movimiento div span {
+    display: block;
+
+    color: var(--secundario);
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+/* CONFIG */
+
+.config-bloque {
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid var(--borde);
+}
+
+.config-bloque:last-child {
+    border-bottom: none;
+}
+
+.config-bloque h3 {
+    margin-bottom: 4px;
+}
+
+.config-bloque > p,
+.config-titulo p {
+    color: var(--secundario);
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+.gasto-fijo-item {
+    background: #f9fafb;
+
+    border-radius: 14px;
+
+    padding: 13px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.gasto-fijo-item strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+.gasto-fijo-item span {
+    color: var(--secundario);
+
+    font-size: 11px;
+}
+
+.fijo-derecha {
+    text-align: right;
+}
+
+.fijo-derecha strong {
+    margin-bottom: 4px;
+}
+
+.eliminar-fijo {
+    border: none;
+
+    background: transparent;
+
+    color: var(--rojo);
+
+    font-size: 11px;
+}
+
+
+/* VACÍO */
+
+.sin-datos {
+    text-align: center;
+
+    color: var(--secundario);
+
+    font-size: 13px;
+
+    padding: 20px 10px;
+}
+
+
+/* ESCRITORIO */
+
+@media (min-width: 700px) {
+
+    .app {
+        padding-top: 45px;
+    }
+
+    .boton-flotante {
+        right:
+            calc(
+                50% - 250px + 20px
+            );
+    }
+
+    .modal-fondo {
+        align-items: center;
+    }
+
+    .modal {
+        max-width: 440px;
+
+        border-radius: 26px;
+    }
+/* =========================================
+   COMPROMISOS DEL MES
+========================================= */
+
+.compromiso-item {
+    background: white;
+
+    border-radius: 17px;
+
+    padding: 15px;
+
+    margin-bottom: 9px;
+}
+
+
+.compromiso-superior {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+.compromiso-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.compromiso-icono {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f4f6;
+
+    border-radius: 13px;
+
+    font-size: 20px;
+}
+
+
+.compromiso-info strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.compromiso-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+}
+
+
+.compromiso-monto {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ESTADO */
+
+.estado-pago {
+    display: inline-block;
+
+    margin-top: 11px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.estado-pendiente {
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+
+.estado-pagado {
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+
+/* BOTÓN PAGAR */
+
+.btn-pagar-fijo {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.btn-pagar-fijo:active {
+    transform: scale(.98);
+}
+
+
+/* COMPROMISO PAGADO */
+
+.compromiso-item.pagado {
+    opacity: .72;
+}
+
+
+.compromiso-item.pagado
+.btn-pagar-fijo {
+    display: none;
+}
+/* =========================================
+   EDICIÓN DE MOVIMIENTOS
+========================================= */
+
+.movimiento {
+    cursor: pointer;
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+}
+
+.movimiento:active {
+    transform: scale(.985);
+}
+
+.movimiento-fecha {
+    display: block;
+    margin-top: 3px;
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+.boton-eliminar {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-deshacer-pago {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: #f3f4f6;
+    color: #6b7280;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.aviso-historial {
+    background: #eff6ff;
+    color: #1e40af;
+
+    border-radius: 13px;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+/* =========================================
+   PLAN FINANCIERO
+========================================= */
+
+.panel-financiero {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+}
+
+
+/* META DE AHORRO */
+
+.meta-ahorro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #f0f1f3;
+}
+
+
+.meta-ahorro div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.etiqueta-panel {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+
+.meta-ahorro strong {
+    margin-top: 4px;
+
+    font-size: 20px;
+}
+
+
+.btn-meta {
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* DISPONIBLE */
+
+.analisis-principal {
+    margin-top: 16px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background: #111827;
+
+    color: white;
+}
+
+
+.analisis-principal span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #cbd5e1;
+}
+
+
+.analisis-principal strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 24px;
+}
+
+
+/* INDICADORES */
+
+.grid-analisis {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 9px;
+
+    margin-top: 10px;
+}
+
+
+.indicador-analisis {
+    background: #f8fafc;
+
+    padding: 12px;
+
+    border-radius: 13px;
+}
+
+
+.indicador-analisis span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 10px;
+}
+
+
+.indicador-analisis strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+}
+
+
+/* ALERTAS */
+
+.alerta-financiera {
+    display: none;
+
+    margin-top: 12px;
+
+    padding: 12px;
+
+    border-radius: 13px;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+.alerta-financiera.bien {
+    display: block;
+
+    background: #ecfdf5;
+
+    color: #166534;
+}
+
+
+.alerta-financiera.atencion {
+    display: block;
+
+    background: #fff7ed;
+
+    color: #9a3412;
+}
+
+
+.alerta-financiera.peligro {
+    display: block;
+
+    background: #fef2f2;
+
+    color: #991b1b;
+}
+
+
+.texto-ayuda {
+    color: #6b7280;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+}
+
+/* =========================================
+   TARJETA DE CRÉDITO
+========================================= */
+.tarjeta-credito-card {
+    background: white;
+    border-radius: 19px;
+    padding: 17px;
+}
+.tc-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.tc-superior span { display: block; color: var(--secundario); font-size: 11px; }
+.tc-superior strong { display: block; margin-top: 5px; font-size: 24px; }
+.tc-badge {
+    background: #eff6ff;
+    color: var(--azul) !important;
+    border-radius: 20px;
+    padding: 6px 9px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.tc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+.tc-grid div {
+    background: #f8fafc;
+    border-radius: 13px;
+    padding: 12px;
+}
+.tc-grid span { display: block; color: var(--secundario); font-size: 10px; line-height: 1.35; }
+.tc-grid strong { display: block; margin-top: 5px; font-size: 14px; }
+.tc-barra {
+    height: 7px;
+    margin-top: 14px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.tc-barra-progreso {
+    height: 100%;
+    width: 0;
+    background: var(--azul);
+    border-radius: 20px;
+    transition: width .3s ease;
+}
+.tc-ayuda {
+    color: var(--secundario);
+    font-size: 11px;
+    line-height: 1.45;
+    margin: 10px 0 12px;
+}
+
+
+/* =========================================
+   V8 - NAVEGACIÓN POR VISTAS
+========================================= */
+
+.contenido-vistas {
+    width: 100%;
+}
+
+.vista-app {
+    display: none;
+}
+
+.vista-app.activa {
+    display: block;
+    animation: aparecerVista .18s ease;
+}
+
+@keyframes aparecerVista {
+    from { opacity: .55; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.encabezado-vista {
+    margin: 6px 0 18px;
+}
+
+.encabezado-vista h2 {
+    margin-top: 4px;
+    font-size: 24px;
+}
+
+.encabezado-vista p {
+    margin-top: 6px;
+    color: var(--secundario);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.inicio-estado {
+    background: white;
+    border-radius: 19px;
+    padding: 17px;
+    margin-top: 15px;
+}
+
+.inicio-estado h3 {
+    margin-top: 3px;
+    font-size: 17px;
+}
+
+.inicio-estado > p {
+    color: var(--secundario);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 9px;
+}
+
+.inicio-atajos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.inicio-atajos button {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 7px;
+    background: #f3f4f6;
+    color: var(--texto);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.navegacion-inferior {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: min(500px, 100%);
+    min-height: 70px;
+    padding: 7px 84px max(7px, env(safe-area-inset-bottom)) 8px;
+    background: rgba(255,255,255,.96);
+    border-top: 1px solid var(--borde);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    z-index: 45;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-item {
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    min-height: 54px;
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-item > span {
+    font-size: 19px;
+    line-height: 1;
+}
+
+.nav-item small {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.nav-item.activo {
+    background: #eff6ff;
+    color: var(--azul);
+}
+
+.boton-flotante {
+    bottom: max(82px, calc(env(safe-area-inset-bottom) + 78px));
+}
+
+#vistaGastos .compromisos-card,
+#vistaGastos .seccion:first-of-type {
+    margin-top: 0;
+}
+
+#vistaTarjetas .seccion:first-of-type,
+#vistaAnalisis .seccion:first-of-type {
+    margin-top: 0;
+}
+
+.tarjeta-detalle-extra {
+    margin-bottom: 10px;
+}
+
+@media (min-width: 700px) {
+    .navegacion-inferior {
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -8px 30px rgba(17, 24, 39, .06);
+    }
+}
+
+
+/* =========================================
+   V9 - PRESUPUESTOS, ALERTAS Y AHORRO
+========================================= */
+.titulo-con-accion {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+.btn-mini-accion {
+    border:none;
+    border-radius:10px;
+    padding:8px 11px;
+    background:#eff6ff;
+    color:var(--azul);
+    font-size:11px;
+    font-weight:700;
+}
+.presupuesto-item { margin-bottom:18px; }
+.presupuesto-item:last-child { margin-bottom:0; }
+.presupuesto-cabecera {
+    display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
+    font-size:13px; margin-bottom:7px;
+}
+.presupuesto-cabecera strong { text-align:right; }
+.presupuesto-detalle {
+    display:flex; justify-content:space-between; margin-top:6px;
+    color:var(--secundario); font-size:10px;
+}
+.presupuesto-progreso {
+    height:7px; background:#f3f4f6; border-radius:20px; overflow:hidden;
+}
+.presupuesto-progreso > div {
+    height:100%; background:var(--azul); border-radius:20px; transition:width .25s ease;
+}
+.presupuesto-item.alerta .presupuesto-progreso > div { background:#f59e0b; }
+.presupuesto-item.excedido .presupuesto-progreso > div { background:var(--rojo); }
+
+.lista-alertas-internas { display:grid; gap:8px; }
+.alerta-interna {
+    background:white; border-radius:15px; padding:13px 14px;
+    font-size:12px; line-height:1.45; border-left:4px solid #d1d5db;
+}
+.alerta-interna.bien { border-left-color:var(--verde); background:#f0fdf4; }
+.alerta-interna.atencion { border-left-color:#f59e0b; background:#fffbeb; }
+.alerta-interna.peligro { border-left-color:var(--rojo); background:#fef2f2; }
+
+.regla-hormiga-info {
+    padding:9px 11px; margin:-5px 0 10px; border-radius:11px;
+    background:#f8fafc; color:var(--secundario); font-size:11px;
+}
+
+.resumen-ahorro-v9 {
+    background:#111827; color:white; border-radius:18px; padding:17px; margin-bottom:10px;
+}
+.resumen-ahorro-v9 span { color:#cbd5e1; font-size:11px; }
+.resumen-ahorro-v9 strong { display:block; font-size:24px; margin-top:4px; }
+.resumen-ahorro-v9 p { color:#cbd5e1; font-size:11px; margin-top:5px; }
+
+.meta-v9-card {
+    background:white; border-radius:18px; padding:16px; margin-bottom:9px; cursor:pointer;
+}
+.meta-v9-top { display:flex; justify-content:space-between; gap:12px; }
+.meta-v9-top strong { font-size:14px; }
+.meta-v9-top span { color:var(--secundario); font-size:11px; white-space:nowrap; }
+.meta-v9-valores { display:flex; justify-content:space-between; margin:9px 0 7px; font-size:11px; color:var(--secundario); }
+.meta-v9-barra { height:7px; background:#e5e7eb; border-radius:20px; overflow:hidden; }
+.meta-v9-barra div { height:100%; background:var(--verde); border-radius:20px; }
+.meta-v9-regla { margin-top:8px; font-size:10px; color:var(--secundario); }
+.ahorro-ayuda-v9 { margin-top:12px; }
+.campo-presupuesto {
+    display:grid; grid-template-columns:1fr 130px; align-items:center; gap:12px;
+    margin-bottom:10px;
+}
+.campo-presupuesto label { font-size:12px; font-weight:600; }
+.campo-presupuesto .input-dinero { margin:0; }
+.campo-presupuesto .input-dinero input { font-size:16px; padding:11px; }
+.campo-presupuesto .input-dinero span { font-size:15px; }
+
+/* V9.1 iPhone / PWA / respaldo */
+html{background:#f4f6f8}
+body{padding-top:env(safe-area-inset-top)}
+.navegacion-inferior{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.backup-estado{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:11px 12px;margin:10px 0 12px;font-size:11px;color:var(--secundario);line-height:1.45}
