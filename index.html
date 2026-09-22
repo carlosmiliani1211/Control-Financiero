@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta charset="UTF-8">
 
     <meta
@@ -9,15 +10,19 @@
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-    <meta name="theme-color" content="#f3f4f6">
-
     <title>Control Financiero</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+
+    <meta name="theme-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Control Financiero">
     <link rel="manifest" href="./manifest.json">
-    <link rel="apple-touch-icon" href="./icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=93">
+    <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=93">
+    <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png?v=93">
+
 </head>
 
 <body>
@@ -1271,12 +1276,12 @@
     
         <div class="config-bloque">
             <h3>🛡️ Respaldo de información</h3>
-            <p>Tus datos permanecen en este dispositivo. Exporta un respaldo para guardarlo en iCloud Drive, Archivos, Google Drive u otra ubicación.</p>
-            <div class="backup-estado" id="estadoBackup">Aún no se ha creado un respaldo desde esta versión.</div>
+            <p>Tus datos se guardan localmente. Exporta un respaldo para guardarlo en iCloud Drive, Archivos, Google Drive u otra ubicación.</p>
+            <div class="backup-estado" id="estadoBackup">Aún no se ha creado un respaldo.</div>
             <button class="boton-principal" id="btnExportarBackup">Exportar respaldo</button>
             <button class="boton-secundario" id="btnImportarBackup">Restaurar respaldo</button>
             <input type="file" id="inputImportarBackup" accept=".json,application/json" style="display:none">
-            <p class="texto-ayuda">Recomendación: guarda el archivo en iCloud Drive. Incluye movimientos, compromisos, presupuestos, tarjeta y metas de ahorro.</p>
+            <p class="texto-ayuda">El respaldo incluye movimientos, compromisos, presupuestos, tarjeta y metas de ahorro.</p>
         </div>
 
 </div>

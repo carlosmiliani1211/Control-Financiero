@@ -1606,7 +1606,9 @@ select:focus {
 .campo-presupuesto .input-dinero input { font-size:16px; padding:11px; }
 .campo-presupuesto .input-dinero span { font-size:15px; }
 
-/* V9.1 iPhone / PWA / respaldo */
+/* =========================================
+   V9.3 - IPHONE / PWA / RESPALDO
+========================================= */
 html{background:#f4f6f8}
 body{padding-top:env(safe-area-inset-top)}
 .navegacion-inferior{padding-bottom:max(8px,env(safe-area-inset-bottom))}

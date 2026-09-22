@@ -3440,7 +3440,7 @@ document.getElementById("btnEliminarMetaAhorroV9")
 
 
 /* =========================================================
-   V9.1 - RESPALDO PORTABLE
+   V9.3 - RESPALDO PORTABLE
    ========================================================= */
 const CLAVES_RESPALDO = [
     "datosFinancieros", "gastosFijos", "configuracionTarjeta",
@@ -3453,7 +3453,7 @@ function actualizarEstadoBackup() {
     const fecha = localStorage.getItem("ultimoBackupControlFinanciero");
     estado.textContent = fecha
         ? "Último respaldo creado: " + new Date(fecha).toLocaleString("es-CL")
-        : "Aún no se ha creado un respaldo desde esta versión.";
+        : "Aún no se ha creado un respaldo.";
 }
 
 function crearObjetoBackup() {
@@ -3467,7 +3467,7 @@ function crearObjetoBackup() {
     });
     return {
         app: "Control Financiero",
-        version: "9.1",
+        version: "9.3",
         formato: 1,
         fechaRespaldo: new Date().toISOString(),
         contenido
@@ -3476,53 +3476,36 @@ function crearObjetoBackup() {
 
 async function exportarBackup() {
     const respaldo = crearObjetoBackup();
-    const blob = new Blob(
-        [JSON.stringify(respaldo, null, 2)],
-        {type:"application/json"}
-    );
+    const blob = new Blob([JSON.stringify(respaldo, null, 2)], {type:"application/json"});
     const fecha = new Date().toISOString().slice(0,10);
     const nombre = `control-financiero-backup-${fecha}.json`;
     const archivo = new File([blob], nombre, {type:"application/json"});
 
     try {
-        if (navigator.share && navigator.canShare &&
-            navigator.canShare({files:[archivo]})) {
-            await navigator.share({
-                files:[archivo],
-                title:"Respaldo Control Financiero"
-            });
+        if (navigator.share && navigator.canShare && navigator.canShare({files:[archivo]})) {
+            await navigator.share({files:[archivo], title:"Respaldo Control Financiero"});
         } else {
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
-            a.href = url;
-            a.download = nombre;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
+            a.href = url; a.download = nombre;
+            document.body.appendChild(a); a.click(); a.remove();
             setTimeout(() => URL.revokeObjectURL(url), 1000);
         }
-        localStorage.setItem(
-            "ultimoBackupControlFinanciero",
-            respaldo.fechaRespaldo
-        );
+        localStorage.setItem("ultimoBackupControlFinanciero", respaldo.fechaRespaldo);
         actualizarEstadoBackup();
     } catch (error) {
-        if (error.name !== "AbortError") {
-            alert("No fue posible crear el respaldo.");
-        }
+        if (error.name !== "AbortError") alert("No fue posible crear el respaldo.");
     }
 }
 
 async function restaurarBackupDesdeArchivo(archivo) {
     try {
         const respaldo = JSON.parse(await archivo.text());
-        if (!respaldo || respaldo.app !== "Control Financiero" ||
-            !respaldo.contenido) {
+        if (!respaldo || respaldo.app !== "Control Financiero" || !respaldo.contenido) {
             alert("Este archivo no es un respaldo válido de Control Financiero.");
             return;
         }
         if (!confirm("Se reemplazarán los datos actuales por los del respaldo. ¿Continuar?")) return;
-
         CLAVES_RESPALDO.forEach(clave => {
             if (Object.prototype.hasOwnProperty.call(respaldo.contenido, clave)) {
                 localStorage.setItem(clave, JSON.stringify(respaldo.contenido[clave]));
@@ -3530,10 +3513,7 @@ async function restaurarBackupDesdeArchivo(archivo) {
                 localStorage.removeItem(clave);
             }
         });
-        localStorage.setItem(
-            "ultimoBackupControlFinanciero",
-            respaldo.fechaRespaldo || new Date().toISOString()
-        );
+        localStorage.setItem("ultimoBackupControlFinanciero", respaldo.fechaRespaldo || new Date().toISOString());
         alert("Respaldo restaurado correctamente.");
         location.reload();
     } catch {
@@ -3542,9 +3522,7 @@ async function restaurarBackupDesdeArchivo(archivo) {
 }
 
 document.getElementById("btnExportarBackup").addEventListener("click", exportarBackup);
-document.getElementById("btnImportarBackup").addEventListener("click", () => {
-    document.getElementById("inputImportarBackup").click();
-});
+document.getElementById("btnImportarBackup").addEventListener("click", () => document.getElementById("inputImportarBackup").click());
 document.getElementById("inputImportarBackup").addEventListener("change", function () {
     if (this.files && this.files[0]) restaurarBackupDesdeArchivo(this.files[0]);
     this.value = "";
